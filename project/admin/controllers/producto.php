@@ -1,8 +1,7 @@
 <?php
     require_once("sistema.php");
-    include '../../../configprueba.php';
-    
-    session_start();
+    include '../configprueba.php';
+  
     
     $admin_id = $_SESSION['id_usuario'];
     
@@ -126,6 +125,14 @@
             $st->execute();
             $rc = $st->rowCount();
             return $rc;
+        }
+        public function chartProyecto(){
+            $this->db();
+                $sql= "select month(o.pedido) as fecha, count(o.id) as cantidad from ordenes o order by 1 asc";
+                $st = $this->db->prepare($sql);
+                $st->execute();
+                $data = $st->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
         }
 
     }

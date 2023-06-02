@@ -27,44 +27,41 @@ if(!isset($admin_id)){
 <body>
    
 <?php include 'admin_header.php'; ?>
-
-<!-- Dashboard de ADMINISTRADOR  -->
-
 <section class="dashboard">
 
-   <h1 class="title">Dashboard</h1>
+   <h1 class="title">Resumenes</h1>
 
    <div class="box-container">
 
       <div class="box">
          <?php
             $ordenes_pendientes = 0;
-            $pendiente = $pdo->query("SELECT total_precio FROM `ordenes` WHERE estado = 'pendiente'");
+            $pendiente = $pdo->query("SELECT total_precio FROM ordenes WHERE estado = 'pendiente'");
             while($fetch_pendings = $pendiente->fetch()){
                $total_precio = $fetch_pendings['total_precio'];
                $ordenes_pendientes += $total_precio;
             };
          ?>
-         <h3>$<?php echo $ordenes_pendientes; ?>/-</h3>
+         <h3>$<?php echo $ordenes_pendientes; ?></h3>
          <p>Ordenes pendientes</p>
       </div>
 
       <div class="box">
          <?php
             $total_completed = 0;
-            $select_completed = $pdo->query("SELECT total_precio FROM `ordenes` WHERE estado = 'completado'");
+            $select_completed = $pdo->query("SELECT total_precio FROM ordenes WHERE estado = 'completado'");
             while($fetch_completed = $select_completed->fetch()){
                $total_precio = $fetch_completed['total_precio'];
                $total_completed += $total_precio;
             };
          ?>
-         <h3>$<?php echo $total_completed; ?>/-</h3>
+         <h3>$<?php echo $total_completed; ?></h3>
          <p>Pagos realizados</p>
       </div>
 
       <div class="box">
          <?php 
-            $select_orders = $pdo->query("SELECT * FROM `ordenes`");
+            $select_orders = $pdo->query("SELECT * FROM ordenes");
             $number_of_orders = $select_orders->rowCount();
          ?>
          <h3><?php echo $number_of_orders; ?></h3>
@@ -73,7 +70,7 @@ if(!isset($admin_id)){
 
       <div class="box">
          <?php 
-            $select_products = $pdo->query("SELECT * FROM `productos`");
+            $select_products = $pdo->query("SELECT * FROM productos");
             $number_of_products = $select_products->rowCount();
          ?>
          <h3><?php echo $number_of_products; ?></h3>
@@ -126,6 +123,9 @@ if(!isset($admin_id)){
 
    </div>
 
+<a href="generar_excel.php" class="white-btn">EXCEL DE ORDENES</a>
+
+<a href="fpdf/generar_pdf.php" class="white-btn">REPORTE PDF ORDENES</a>
 </section>
 <script src="js/admin_script.js"></script>
 

@@ -70,7 +70,7 @@ $id = (isset($_GET['id'])) ? $_GET['id'] : null;
                     $data=$_POST;
                     if($sistema -> login($data['correo'],$data['contrasena'])){
                         ob_end_clean();
-                        header("Location: index.php");
+                        header("Location: admin_index.php");
                     }
                 }
                 include('admin/views/login/index.php');

@@ -30,7 +30,7 @@ if(isset($message)){
       </div>
 
       <div class="account-box">
-         <p>correo : <span><?php echo 'hola' ?></span></p>
+      <p>correo: <span><?php echo $_SESSION['correo']; ?></span></p>
          <a href="logout.php" class="delete-btn">Salir</a>
          <div>login <a href="login.php">Ingresar</a> | <a href="register.php">Registrarse</a></div>
       </div>
